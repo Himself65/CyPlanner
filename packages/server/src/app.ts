@@ -1,7 +1,12 @@
 import express from 'express'
-import * as console from 'console'
+import { PrismaClient } from '@prisma/client'
+import bodyParser from 'body-parser'
+
+const prisma = new PrismaClient()
 
 const app = express()
+
+app.use(bodyParser.json())
 
 app.get('/', (req, res) => {
   res.json('hello, world')
