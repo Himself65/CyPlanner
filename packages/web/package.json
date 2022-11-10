@@ -6,17 +6,23 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "playwright": "playwright test",
+    "e2e": "start-server-and-test dev http://localhost:3000 playwright"
   },
   "dependencies": {
+    "next": "13.0.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.27.1",
     "@types/node": "^18.11.9",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.8",
     "eslint": "8.27.0",
     "eslint-config-next": "13.0.2",
-    "next": "13.0.2",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "start-server-and-test": "^1.14.0",
     "typescript": "^4.8.4"
   }
 }
