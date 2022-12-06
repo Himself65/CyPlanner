@@ -1,0 +1,72 @@
+import { useEditor } from './EditorProvider'
+import '@blocksuite/blocks'
+import '@blocksuite/blocks/style'
+import type { EditorContainer } from '@blocksuite/editor'
+import { createEditor, BlockSchema } from '@blocksuite/editor'
+import { Workspace } from '@blocksuite/store'
+import { forwardRef, Suspense, useEffect, useRef } from 'react'
+import exampleMarkdown from './exampleMarkdown'
+
+const BlockSuiteEditor = forwardRef<EditorContainer>(({}, ref) => {
+  const containerElement = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    if (!containerElement.current) {
+      return
+    }
+    const workspace = new Workspace({})
+    const page = workspace.createPage('page0').register(BlockSchema)
+    const editor = createEditor(page)
+    containerElement.current.appendChild(editor)
+    if (ref) {
+      if ('current' in ref) {
+        ref.current = editor
+      } else {
+        ref(editor)
+      }
+    }
+    return () => {
+      editor.remove()
+    }
+  }, [ref])
+  return <div id="editor" style={{ height: '100%' }} ref={containerElement}/>
+})
+
+export const Editor = () => {
+  const editorRef = useRef<EditorContainer>(null)
+  const { setEditor } = useEditor()
+  useEffect(() => {
+    if (!editorRef.current) {
+      return
+    }
+    setEditor(editorRef.current)
+    const { page } = editorRef.current as EditorContainer
+    const pageId = page.addBlock({
+      flavour: 'affine:page',
+      title: 'Hello, world',
+    })
+    const groupId = page.addBlock({ flavour: 'affine:group' }, pageId)
+    editorRef.current.clipboard.importMarkdown(exampleMarkdown, `${groupId}`)
+    page.resetHistory()
+  }, [setEditor])
+
+  return (
+    <Suspense fallback={<div>Error!</div>}>
+      <BlockSuiteEditor ref={editorRef}/>
+    </Suspense>
+  )
+}
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'editor-container': EditorContainer;
+  }
+
+  namespace JSX {
+    interface IntrinsicElements {
+      // TODO fix types on react
+      'editor-container': EditorContainer;
+    }
+  }
+}
+
+export default Editor

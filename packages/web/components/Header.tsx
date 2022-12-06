@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import { Fragment, useState } from 'react'
 
 const navigation: any[] = [
-  { name: 'Create', href: '/create' }
+  // { name: 'Create', href: '/create' }
   // { name: 'Document', href: '/docs' }
 ]
 

@@ -11,6 +11,8 @@
     "e2e": "start-server-and-test dev http://localhost:3000 playwright"
   },
   "dependencies": {
+    "@blocksuite/editor": "0.3.0-alpha.5",
+    "@blocksuite/store": "0.3.0-alpha.5",
     "@clerk/nextjs": "^4.5.8",
     "@headlessui/react": "^1.7.4",
     "@heroicons/react": "^2.0.13",
