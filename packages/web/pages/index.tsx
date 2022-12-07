@@ -46,9 +46,7 @@ export default function Home () {
         {
           projects === null ?
             (
-              <div>
-                nothing
-              </div>
+              null
             ) :
             (
               projects.map(project => {

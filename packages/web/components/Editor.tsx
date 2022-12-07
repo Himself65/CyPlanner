@@ -69,8 +69,9 @@ export const Editor = (props: EditorProps) => {
 
   return (
     <Suspense fallback={<div>Error!</div>}>
-      <div>
+      <div className='mt-2'>
         <button
+          className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2'
           onClick={() => {
             const editor = editorRef.current
             if (editor) {
@@ -96,6 +97,15 @@ export const Editor = (props: EditorProps) => {
         >
           save
         </button>
+        <button
+          className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2'
+          onClick={() => {
+            const editor = editorRef.current
+            if (editor) {
+              editor.contentParser.onExportMarkdown()
+            }
+          }}
+        >export</button>
       </div>
       <BlockSuiteEditor ref={editorRef}/>
     </Suspense>
