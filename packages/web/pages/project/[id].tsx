@@ -1,6 +1,7 @@
 import { NextPage } from 'next'
 import { Layout } from '../../layout/Layout'
 import dynamic from 'next/dynamic'
+import { useRouter } from 'next/router'
 
 const DynamicEditor = dynamic(() => import('../../components/Editor'), {
   loading: () => (
@@ -12,9 +13,18 @@ const DynamicEditor = dynamic(() => import('../../components/Editor'), {
 })
 
 const ProjectPage: NextPage = () => {
+  const router = useRouter()
+  const id = router.query.id
+  if (typeof id !== 'string') {
+    return (
+      <Layout>
+        Cannot find project
+      </Layout>
+    )
+  }
   return (
     <Layout>
-      <DynamicEditor/>
+      <DynamicEditor id={id}/>
     </Layout>
   )
 }

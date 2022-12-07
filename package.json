@@ -1,8 +1,5 @@
 {
   "name": "@g10/workspace",
-  "scripts": {
-    "postinstall": "pnpm -r run setup"
-  },
   "devDependencies": {
     "typescript": "^4.8.4",
     "eslint": "8.27.0",
