@@ -19,6 +19,7 @@ export default function Home () {
     <Layout>
       <div className="mt-2">
         <button
+          className='focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2'
           onClick={() => {
             fetch('/api/document', {
               method: 'PUT'
@@ -53,7 +54,7 @@ export default function Home () {
               projects.map(project => {
                 return (
                   <a
-                    className="block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100"
+                    className="mt-3 block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100"
                     data-test-id={project.id}
                     key={project.id}
                     href={`/project/${project.id}`}

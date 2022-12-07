@@ -79,6 +79,7 @@ export const Header = () => {
                       ) : (
                         <button
                           className="px-4 py-2 font-semibold text-sm bg-yellow-300 text-red-700 rounded-full shadow-sm"
+                          aria-label='sign-up'
                           onClick={(event) => {
                             event.preventDefault()
                             router.push('/sign-up')

@@ -14,7 +14,7 @@ export default function SignInPage () {
     >
       <div
         className="w-2/3 bg-white shadow-md border border-gray-200 rounded-lg max-w-sm p-4 sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
-        <form className="space-y-6" action="#">
+        <div className="space-y-6">
           <h3
             className="text-xl font-medium text-gray-900 dark:text-white">Sign
             up</h3>
@@ -45,30 +45,31 @@ export default function SignInPage () {
                    }}
             />
           </div>
-          <button type="submit"
+          <button
+                  id="submit"
                   className="w-full text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
                   onClick={(event) => {
-                    event.preventDefault()
                     if (username === '' || password === '') {
                       return
                     }
                     if (isLoaded) {
                       console.log('create')
-                      signIn.create({
+                      return signIn.create({
                         identifier: username,
                         password
                       }).then(result => {
                         console.log(result)
+                        return router.replace('/')
                       }).catch(() => {
                         // fixme: error display
-                        router.push('/')
+                        return router.replace('/')
                       })
                     }
                   }}
           >
             Sign in
           </button>
-        </form>
+        </div>
       </div>
     </Layout>
   )
