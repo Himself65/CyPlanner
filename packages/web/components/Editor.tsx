@@ -77,7 +77,7 @@ export const Editor = (props: EditorProps) => {
               const { page } = editor
               const data = JSON.stringify({
                 id: props.id,
-                title: '',
+                title: page.getBlockByFlavour('affine:page')[0].title,
                 data: fromUint8Array(encodeStateAsUpdate(page.doc))
               })
               console.log('data', data)

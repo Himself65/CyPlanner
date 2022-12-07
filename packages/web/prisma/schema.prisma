@@ -14,5 +14,5 @@ model Project {
     id     String @id @default(auto()) @map("_id") @db.ObjectId
     title  String
     data   String
-    userId String @unique
+    userId String
 }

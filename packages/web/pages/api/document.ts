@@ -10,6 +10,13 @@ const handler = requireAuth(async (req, res) => {
         }
       })
       res.json(project)
+    } else {
+      const projects = await prisma.project.findMany({
+        where: {
+          userId: req.auth.userId
+        }
+      })
+      res.json(projects)
     }
   } else if (req.method === 'POST') {
 
